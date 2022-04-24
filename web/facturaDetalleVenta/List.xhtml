@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFacturaDetalleVentaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="FacturaDetalleVentaListForm">
+                <p:panel header="#{bundle.ListFacturaDetalleVentaTitle}">
+                    <p:dataTable id="datalist" value="#{facturaDetalleVentaController.items}" var="item"
+                                 selectionMode="single" selection="#{facturaDetalleVentaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.ideFacdetven}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFacturaDetalleVentaTitle_ideFacdetven}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ideFacdetven}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFacturaDetalleVentaTitle_cantidadFacdetven}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cantidadFacdetven}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFacturaDetalleVentaTitle_preciounitarioFacdetven}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.preciounitarioFacdetven}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFacturaDetalleVentaTitle_totalFacdetven}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.totalFacdetven}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFacturaDetalleVentaTitle_incentivoFacdetven}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.incentivoFacdetven}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFacturaDetalleVentaTitle_ideArt}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ideArt}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFacturaDetalleVentaTitle_ideFacvent}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ideFacvent}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFacturaDetalleVentaTitle_ideInce}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ideInce}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{facturaDetalleVentaController.prepareCreate}" update=":FacturaDetalleVentaCreateForm" oncomplete="PF('FacturaDetalleVentaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":FacturaDetalleVentaViewForm" oncomplete="PF('FacturaDetalleVentaViewDialog').show()" disabled="#{empty facturaDetalleVentaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":FacturaDetalleVentaEditForm" oncomplete="PF('FacturaDetalleVentaEditDialog').show()" disabled="#{empty facturaDetalleVentaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{facturaDetalleVentaController.destroy}" update=":growl,datalist" disabled="#{empty facturaDetalleVentaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

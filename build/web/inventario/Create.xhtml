@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InventarioCreateDlg" widgetVar="InventarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateInventarioTitle}">
+            <h:form id="InventarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inventarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateInventarioLabel_ideInve}" for="ideInve" />
+                        <p:inputText id="ideInve" value="#{inventarioController.selected.ideInve}" title="#{bundle.CreateInventarioTitle_ideInve}" required="true" requiredMessage="#{bundle.CreateInventarioRequiredMessage_ideInve}"/>
+                        <p:outputLabel value="#{bundle.CreateInventarioLabel_totalInve}" for="totalInve" />
+                        <p:inputText id="totalInve" value="#{inventarioController.selected.totalInve}" title="#{bundle.CreateInventarioTitle_totalInve}" />
+                        <p:outputLabel value="#{bundle.CreateInventarioLabel_incentivoInve}" for="incentivoInve" />
+                        <p:inputText id="incentivoInve" value="#{inventarioController.selected.incentivoInve}" title="#{bundle.CreateInventarioTitle_incentivoInve}" />
+                        <p:outputLabel value="#{bundle.CreateInventarioLabel_ideFacdetven}" for="ideFacdetven" />
+                        <p:selectOneMenu id="ideFacdetven" value="#{inventarioController.selected.ideFacdetven}" >
+                            <f:selectItems value="#{facturaDetalleVentaController.itemsAvailableSelectOne}"
+                                           var="ideFacdetvenItem"
+                                           itemValue="#{ideFacdetvenItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateInventarioLabel_ideVend}" for="ideVend" />
+                        <p:selectOneMenu id="ideVend" value="#{inventarioController.selected.ideVend}" >
+                            <f:selectItems value="#{vendedoresController.itemsAvailableSelectOne}"
+                                           var="ideVendItem"
+                                           itemValue="#{ideVendItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{inventarioController.create}" value="#{bundle.Save}" update="display,:InventarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'InventarioCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InventarioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

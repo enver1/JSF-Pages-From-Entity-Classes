@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturaVentaViewDlg" widgetVar="FacturaVentaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFacturaVentaTitle}">
+            <h:form id="FacturaVentaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturaVentaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_ideFacvent}"/>
+                        <h:outputText value="#{facturaVentaController.selected.ideFacvent}" title="#{bundle.ViewFacturaVentaTitle_ideFacvent}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_clavepagoFacvent}"/>
+                        <h:outputText value="#{facturaVentaController.selected.clavepagoFacvent}" title="#{bundle.ViewFacturaVentaTitle_clavepagoFacvent}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_totalFacvent}"/>
+                        <h:outputText value="#{facturaVentaController.selected.totalFacvent}" title="#{bundle.ViewFacturaVentaTitle_totalFacvent}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_fechaFacvent}"/>
+                        <h:outputText value="#{facturaVentaController.selected.fechaFacvent}" title="#{bundle.ViewFacturaVentaTitle_fechaFacvent}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_incentivoFacvent}"/>
+                        <h:outputText value="#{facturaVentaController.selected.incentivoFacvent}" title="#{bundle.ViewFacturaVentaTitle_incentivoFacvent}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_ideVend}"/>
+                        <h:outputText value="#{facturaVentaController.selected.ideVend}" title="#{bundle.ViewFacturaVentaTitle_ideVend}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FacturaVentaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturaDetalleVentaViewDlg" widgetVar="FacturaDetalleVentaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFacturaDetalleVentaTitle}">
+            <h:form id="FacturaDetalleVentaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturaDetalleVentaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFacturaDetalleVentaLabel_ideFacdetven}"/>
+                        <h:outputText value="#{facturaDetalleVentaController.selected.ideFacdetven}" title="#{bundle.ViewFacturaDetalleVentaTitle_ideFacdetven}"/>
+                        <h:outputText value="#{bundle.ViewFacturaDetalleVentaLabel_cantidadFacdetven}"/>
+                        <h:outputText value="#{facturaDetalleVentaController.selected.cantidadFacdetven}" title="#{bundle.ViewFacturaDetalleVentaTitle_cantidadFacdetven}"/>
+                        <h:outputText value="#{bundle.ViewFacturaDetalleVentaLabel_preciounitarioFacdetven}"/>
+                        <h:outputText value="#{facturaDetalleVentaController.selected.preciounitarioFacdetven}" title="#{bundle.ViewFacturaDetalleVentaTitle_preciounitarioFacdetven}"/>
+                        <h:outputText value="#{bundle.ViewFacturaDetalleVentaLabel_totalFacdetven}"/>
+                        <h:outputText value="#{facturaDetalleVentaController.selected.totalFacdetven}" title="#{bundle.ViewFacturaDetalleVentaTitle_totalFacdetven}"/>
+                        <h:outputText value="#{bundle.ViewFacturaDetalleVentaLabel_incentivoFacdetven}"/>
+                        <h:outputText value="#{facturaDetalleVentaController.selected.incentivoFacdetven}" title="#{bundle.ViewFacturaDetalleVentaTitle_incentivoFacdetven}"/>
+                        <h:outputText value="#{bundle.ViewFacturaDetalleVentaLabel_ideArt}"/>
+                        <h:outputText value="#{facturaDetalleVentaController.selected.ideArt}" title="#{bundle.ViewFacturaDetalleVentaTitle_ideArt}"/>
+                        <h:outputText value="#{bundle.ViewFacturaDetalleVentaLabel_ideFacvent}"/>
+                        <h:outputText value="#{facturaDetalleVentaController.selected.ideFacvent}" title="#{bundle.ViewFacturaDetalleVentaTitle_ideFacvent}"/>
+                        <h:outputText value="#{bundle.ViewFacturaDetalleVentaLabel_ideInce}"/>
+                        <h:outputText value="#{facturaDetalleVentaController.selected.ideInce}" title="#{bundle.ViewFacturaDetalleVentaTitle_ideInce}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FacturaDetalleVentaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

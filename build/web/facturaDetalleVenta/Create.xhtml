@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturaDetalleVentaCreateDlg" widgetVar="FacturaDetalleVentaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFacturaDetalleVentaTitle}">
+            <h:form id="FacturaDetalleVentaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturaDetalleVentaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateFacturaDetalleVentaLabel_ideFacdetven}" for="ideFacdetven" />
+                        <p:inputText id="ideFacdetven" value="#{facturaDetalleVentaController.selected.ideFacdetven}" title="#{bundle.CreateFacturaDetalleVentaTitle_ideFacdetven}" required="true" requiredMessage="#{bundle.CreateFacturaDetalleVentaRequiredMessage_ideFacdetven}"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaDetalleVentaLabel_cantidadFacdetven}" for="cantidadFacdetven" />
+                        <p:inputText id="cantidadFacdetven" value="#{facturaDetalleVentaController.selected.cantidadFacdetven}" title="#{bundle.CreateFacturaDetalleVentaTitle_cantidadFacdetven}" />
+                        <p:outputLabel value="#{bundle.CreateFacturaDetalleVentaLabel_preciounitarioFacdetven}" for="preciounitarioFacdetven" />
+                        <p:inputText id="preciounitarioFacdetven" value="#{facturaDetalleVentaController.selected.preciounitarioFacdetven}" title="#{bundle.CreateFacturaDetalleVentaTitle_preciounitarioFacdetven}" />
+                        <p:outputLabel value="#{bundle.CreateFacturaDetalleVentaLabel_totalFacdetven}" for="totalFacdetven" />
+                        <p:inputText id="totalFacdetven" value="#{facturaDetalleVentaController.selected.totalFacdetven}" title="#{bundle.CreateFacturaDetalleVentaTitle_totalFacdetven}" />
+                        <p:outputLabel value="#{bundle.CreateFacturaDetalleVentaLabel_incentivoFacdetven}" for="incentivoFacdetven" />
+                        <p:inputText id="incentivoFacdetven" value="#{facturaDetalleVentaController.selected.incentivoFacdetven}" title="#{bundle.CreateFacturaDetalleVentaTitle_incentivoFacdetven}" />
+                        <p:outputLabel value="#{bundle.CreateFacturaDetalleVentaLabel_ideArt}" for="ideArt" />
+                        <p:selectOneMenu id="ideArt" value="#{facturaDetalleVentaController.selected.ideArt}" >
+                            <f:selectItems value="#{articulosController.itemsAvailableSelectOne}"
+                                           var="ideArtItem"
+                                           itemValue="#{ideArtItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFacturaDetalleVentaLabel_ideFacvent}" for="ideFacvent" />
+                        <p:selectOneMenu id="ideFacvent" value="#{facturaDetalleVentaController.selected.ideFacvent}" >
+                            <f:selectItems value="#{facturaVentaController.itemsAvailableSelectOne}"
+                                           var="ideFacventItem"
+                                           itemValue="#{ideFacventItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFacturaDetalleVentaLabel_ideInce}" for="ideInce" />
+                        <p:selectOneMenu id="ideInce" value="#{facturaDetalleVentaController.selected.ideInce}" >
+                            <f:selectItems value="#{incentivosController.itemsAvailableSelectOne}"
+                                           var="ideInceItem"
+                                           itemValue="#{ideInceItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{facturaDetalleVentaController.create}" value="#{bundle.Save}" update="display,:FacturaDetalleVentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'FacturaDetalleVentaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FacturaDetalleVentaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

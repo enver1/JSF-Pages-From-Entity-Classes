@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VendedoresEditDlg" widgetVar="VendedoresEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditVendedoresTitle}">
+            <h:form id="VendedoresEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{vendedoresController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditVendedoresLabel_nombreVend}" for="nombreVend" />
+                        <p:inputText id="nombreVend" value="#{vendedoresController.selected.nombreVend}" title="#{bundle.EditVendedoresTitle_nombreVend}" />
+                        <p:outputLabel value="#{bundle.EditVendedoresLabel_identificacionVend}" for="identificacionVend" />
+                        <p:inputText id="identificacionVend" value="#{vendedoresController.selected.identificacionVend}" title="#{bundle.EditVendedoresTitle_identificacionVend}" />
+                        <p:outputLabel value="#{bundle.EditVendedoresLabel_ideVend}" for="ideVend" />
+                        <p:inputText id="ideVend" value="#{vendedoresController.selected.ideVend}" title="#{bundle.EditVendedoresTitle_ideVend}" required="true" requiredMessage="#{bundle.EditVendedoresRequiredMessage_ideVend}"/>
+                        <p:outputLabel value="#{bundle.EditVendedoresLabel_codigoVend}" for="codigoVend" />
+                        <p:inputText id="codigoVend" value="#{vendedoresController.selected.codigoVend}" title="#{bundle.EditVendedoresTitle_codigoVend}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{vendedoresController.update}" value="#{bundle.Save}" update="display,:VendedoresListForm:datalist,:growl" oncomplete="handleSubmit(args, 'VendedoresEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="VendedoresEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="IncentivosEditDlg" widgetVar="IncentivosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditIncentivosTitle}">
+            <h:form id="IncentivosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{incentivosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditIncentivosLabel_ideInce}" for="ideInce" />
+                        <p:inputText id="ideInce" value="#{incentivosController.selected.ideInce}" title="#{bundle.EditIncentivosTitle_ideInce}" required="true" requiredMessage="#{bundle.EditIncentivosRequiredMessage_ideInce}"/>
+                        <p:outputLabel value="#{bundle.EditIncentivosLabel_codigoInce}" for="codigoInce" />
+                        <p:inputText id="codigoInce" value="#{incentivosController.selected.codigoInce}" title="#{bundle.EditIncentivosTitle_codigoInce}" />
+                        <p:outputLabel value="#{bundle.EditIncentivosLabel_porcentajeInce}" for="porcentajeInce" />
+                        <p:inputText id="porcentajeInce" value="#{incentivosController.selected.porcentajeInce}" title="#{bundle.EditIncentivosTitle_porcentajeInce}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{incentivosController.update}" value="#{bundle.Save}" update="display,:IncentivosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'IncentivosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="IncentivosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
